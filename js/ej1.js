@@ -10,20 +10,15 @@ let alumnosList = () => {
 };
 
 let getMayorAlumno = (alumnos) => {
-  return Math.max.apply(
-    Math,
-    alumnos.map((alumno) => alumno.edadAlumno)
+  return alumnos.reduce((prev, current) =>
+    +prev.edadAlumno > +current.edadAlumno ? prev : current
   );
 };
 
 let excecuteEj = () => {
-  let listAlumnos = alumnosList();
+  let oldestStudent = getMayorAlumno(alumnosList());
   document.write(
-    `El alumno con la mayor edad la cual es ${getMayorAlumno(
-      listAlumnos
-    )} corresponde al nombre de ${findAlumno(
-      listAlumnos,
-      getMayorAlumno(listAlumnos))}`
+    `El alumno con la mayor edad la cual es ${oldestStudent.edadAlumno} corresponde al nombre de ${oldestStudent.nombreAlumno}`
   );
 };
 
